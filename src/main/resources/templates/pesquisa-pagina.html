@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<script src="bootstrap/js/jquery.min2.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="estilos.css" />
+<link rel="stylesheet" type="text/css" href="switch.css" />
+<link rel="shortcut icon" href="img/proergon.ico" type="image/x-icon" />
+<title>Pesquisa - A Voz do Cliente</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script type="text/javascript">
+	function getUserIP(onNewIP) {
+		var myPeerConnection = window.RTCPeerConnection
+				|| window.mozRTCPeerConnection
+				|| window.webkitRTCPeerConnection;
+		var pc = new myPeerConnection({
+			iceServers : []
+		}), noop = function() {
+		}, localIPs = {}, ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g, key;
+
+		function iterateIP(ip) {
+			if (!localIPs[ip])
+				onNewIP(ip);
+			localIPs[ip] = true;
+		}
+
+		//create a bogus data channel
+		pc.createDataChannel("");
+
+		// create offer and set local description
+		pc.createOffer(function(sdp) {
+			sdp.sdp.split('\n').forEach(function(line) {
+				if (line.indexOf('candidate') < 0)
+					return;
+				line.match(ipRegex).forEach(iterateIP);
+			});
+
+			pc.setLocalDescription(sdp, noop, noop);
+		}, noop);
+
+		//listen for candidate events
+		pc.onicecandidate = function(ice) {
+			if (!ice || !ice.candidate || !ice.candidate.candidate
+					|| !ice.candidate.candidate.match(ipRegex))
+				return;
+			ice.candidate.candidate.match(ipRegex).forEach(iterateIP);
+		};
+	}
+
+	// Usage
+
+	getUserIP(function(ip) {
+		document.getElementById("ip").value = ip;
+	});
+
+	/**  
+	noback v0.0.1 
+	library for prevent backbutton 
+	Author: Kiko Mesquita: http://twitter.com/kikomesquita 
+	Based on stackoverflow 
+	 * Copyright (c) 2015 @ kikomesquita 
+	 */
+
+	(function(window) {
+		'use strict';
+
+		var noback = {
+
+			//globals 
+			version : '0.0.1',
+			history_api : typeof history.pushState !== 'undefined',
+
+			init : function() {
+				window.location.hash = '#no-back';
+				noback.configure();
+			},
+
+			hasChanged : function() {
+				if (window.location.hash == '#no-back') {
+					window.location.hash = '#';
+					//mostra mensagem que não pode usar o btn volta do browser
+					if ($("#msgAviso").css('display') == 'none') {
+						$("#msgAviso").slideToggle("slow");
+					}
+				}
+			},
+
+			checkCompat : function() {
+				if (window.addEventListener) {
+					window.addEventListener("hashchange", noback.hasChanged,
+							false);
+				} else if (window.attachEvent) {
+					window.attachEvent("onhashchange", noback.hasChanged);
+				} else {
+					window.onhashchange = noback.hasChanged;
+				}
+			},
+
+			configure : function() {
+				if (window.location.hash == '#no-back') {
+					if (this.history_api) {
+						history.pushState(null, '', '#');
+					} else {
+						window.location.hash = '#';
+						//mostra mensagem que não pode usar o btn volta do browser
+						if ($("#msgAviso").css('display') == 'none') {
+							$("#msgAviso").slideToggle("slow");
+						}
+					}
+				}
+				noback.checkCompat();
+				noback.hasChanged();
+			}
+
+		};
+
+		// AMD support 
+		if (typeof define === 'function' && define.amd) {
+			define(function() {
+				return noback;
+			});
+		}
+		// For CommonJS and CommonJS-like 
+		else if (typeof module === 'object' && module.exports) {
+			module.exports = noback;
+		} else {
+			window.noback = noback;
+		}
+		noback.init();
+	}(window));
+
+
+	jQuery(document)
+			.ready(
+					function() {
+						jQuery('#form').submit(
+										function() {
+											$('#submit').attr('disabled','disabled');
+											var dados = jQuery(this).serialize();
+
+											jQuery.ajax({
+														type : "POST",
+														url : "salvarpesquisa2",
+														data : dados,
+														success : function(data) {
+														
+														if(data == 'Sucesso'){
+														
+														$("#divSucesso").html(
+																			"<div class='alert alert-success'><strong>Parabéns!!</strong> Respondido com sucesso. Aguarde para ir para a próxima pergunta</div>");
+															
+														document.getElementById("listaDeContato").classList.add('switch');
+														
+														
+														$("#imagem").html(
+																			"<a><img class= 'img-responsive' border='0' alt='Proergon' src='img/logo_proergon.png'	height='100px' /></a>");
+														
+														}else{
+														
+														
+														
+														}
+														
+														
+															
+														}
+													});
+
+											return false;
+										});
+					});
+
+
+
+
+	function iniciarFollow() {
+
+		window
+				.setInterval(
+						function() {
+						
+						
+						 
+							var dados = jQuery('#form').serialize();
+							
+							jQuery
+									.ajax({
+										type : "POST",
+										url : "monitoraAvancoAuto",
+										data : dados,
+										success : function(data) {
+											
+										if(data == "Sucesso"){
+										
+										document.getElementById('avancar-texto').click();
+										
+										
+										}else{
+										
+										
+										
+										
+										}
+												
+											
+										}
+									});
+						
+						}, 2000);
+	}
+	window.addEventListener("load", iniciarFollow);
+</script>
+</head>
+<body>
+	
+	<div class="container">
+
+		<a><img border="0" alt="Proergon" src="img/logo_proergon.png"
+			height="50px" /></a>
+		<div
+			style="background-color: RGBA(34, 139, 34, 0.8); border-radius: 8px; padding: 10px; color: #FFF; font: Arial;">
+			<h2>
+				Nome da equipe: <span th:text="${pesquisa.nomeequipe}"></span>
+			</h2>
+			<h5>
+				Data de da Pesquisa: <span th:text="${pesquisa.data}" align="rigth"></span>
+			</h5>
+		</div>
+
+		<hr />
+
+		<div id="listaDeContato">
+			<div class="container">
+
+				<form method="POST" action="" id="form" name="form">
+
+					<div class="panel-group">
+						<div class="panel panel-default">
+							<div th:each="contato : ${contatos}">
+								<div class="panel-heading">
+									<strong><span th:text="${contato.id}"
+										style="font-size: 24px;"></span><span> - </span> <span
+										th:text="${contato.question}" style="font-size: 24px;"></span></strong>
+								</div>
+								<div class="panel-body">
+									<div class="grupo-radio">
+
+										<div class="radio">
+											<input type="hidden" name="question" id="question" th:value="${contato.id}" />
+											<label th:each="alternative : ${contato.alternatives}"
+												class="custom-control custom-checkbox container">
+												<div th:switch="${contato.type}" style="width: 230px;">
+													<input th:case="1" type="radio" name="alternative_id"
+														th:value="${alternative.ind}" class="custom-control-input"
+														required="required" /> <input th:case="2" type="checkbox"
+														name="alternative_id" th:value="${alternative.ind}"
+														class="custom-control-input" /> <span
+														class="custom-control-indicator" style=" height: 30px; width: 30px;" ></span>
+													<div >
+														<strong><span style="font-size: 24px; margin-left: 20px; margin-top: 19px;"
+															th:text="${alternative.letter}+' - '"	class="custom-control-description"  ></span></strong>
+															<span style="font-size: 24px;  margin-top: 19px;"
+															th:text="${alternative.text}"
+															class="custom-control-description"  ></span>
+													</div>
+												</div>
+											</label>
+										</div>
+									</div>
+								</div>
+								<hr />
+							</div>
+						</div>
+					</div>
+					
+					
+					<input type="hidden" name="id_pesquisa" th:value="${pesquisa.id}" />
+					<input type="hidden" name="ip" id="ip" />
+
+					<button type="submit" class="btn btn-success btn-lg btn-block" id="submit">Enviar
+						Resposta</button>
+				</form>
+				<br />
+				
+
+				<br />
+					<div th:switch="${multi}">
+					
+					<a th:case="multi"
+						th:href="@{'/pesquisaescolha'(pesquisa=${pesquisa.id},id=${proximo})}"
+							id="avancar-texto"></a>
+					<a th:case="note"
+						th:href="@{'/p'(id=${proximo})}"
+							id="avancar-texto"></a>
+							
+					</div>
+			</div>
+		</div>
+			<div id="imagem"></div>
+			<div id="divSucesso"></div>
+	</div>
+
+	<hr />
+	<footer id="footer" class="footer"> 2018 © Proergon. Todos os
+		direitos reservados. </footer>
+	<!--  <script src="jquery.js"></script>-->
+	<script src="bootstrap/js/tether.min.js"></script>
+	<script src="bootstrap/js/jquery.min2.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	
+	<style>
+INPUT.MeuInput {
+     width: 80px;
+     height: 40px;
+     
+}
+</style>
+</body>
+</html>

@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<script src="bootstrap/js/jquery.min2.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="estilos.css" />
+<link rel="stylesheet" type="text/css" href="switch.css" />
+<link rel="stylesheet" href="bootstrap/css/tether.min.css">
+<link rel="shortcut icon" href="img/proergon.ico" type="image/x-icon" />
+<title>A Voz do Cliente</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="/meujavascript.js"></script>
+
+	
+</script>
+
+
+</head>
+<body>
+
+
+
+	<div class="container">
+		<div class="header">
+			<a><img border="0" alt="Proergon" src="img/logo_proergon.png"
+				height="50px" /></a>
+
+			<div style="float: right; padding-top: 5px;">
+				<strong><em><span id="ip"></span></em></strong>
+			</div>
+			<hr style="color: RGBA(34, 139, 34, 1); margin-bottom: 0px;" />
+			<hr style="color: RGBA(34, 139, 34, 1); margin-top: 0px;" />
+		</div>
+		
+		
+
+
+		<button type="button" class="btn btn-success btn-sm"
+			data-toggle="modal" data-target="#myModal2">Configuração<span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
+
+		
+
+		<!-- Modal Config-->
+		<div class="modal fade" id="myModal2" role="dialog">
+			<div class="modal-dialog modal-md">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h5 class="modal-title">Configurações</h5>
+					</div>
+					<div class="modal-body container">
+						<div style="float: left;">
+							<div style="float: left;">Limitar respostas ao total de
+								participantes:</div>
+							<br />
+							<div style="float: left; ">Validar o IP
+								dos participantes:</div>
+						</div>
+
+						<div style="float: right; ">
+							<div class="switch__container">
+								<div th:if="${validaQuestoes}">
+								<input id="switch-shadow" 
+									type="checkbox"  checked> 
+									
+								</div>
+								<div th:unless="${validaQuestoes}">
+								<input id="switch-shadow" 
+									type="checkbox"> 
+									
+								</div>
+							</div>
+							<div class="switch__container">
+							
+							<div th:if="${validaIp}">
+								<input id="switch-shadow2" 
+									type="checkbox"  checked> </label>
+							</div>
+									
+								
+								<div th:unless="${validaIp}">	
+								<input id="switch-shadow2"
+									type="checkbox" > </label>
+									
+								</div>	
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-success btn-sm"
+							data-dismiss="modal">Fechar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="float: right;">
+			<a href="/hie" title="Atualizar a Pagina"> <img
+				alt="Atualizar a Pagina" src="img/reload.png"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/>
+			</a>
+
+		</div>
+
+		<hr />
+
+		<a	th:href="@{'/cadastro'}" alt>
+		<img border="0"	alt="Vá para a HOME" src="img/proergon.ico" width="40" height="40"   onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/>
+		</a>
+<hr />
+<h3>Gerenciar Entidades:</h3>
+<hr />
+<div class="card" style="border-radius: 10px;">
+
+			<div class="card-header" style="background-color: #29a329;">
+				<h3 class="panel-title" data-toggle="collapse"
+					data-target="#quarto-paragrafo" data-parent="#paineis-sobre"
+					style="color: #ffffff;">Cadastrar Pesquisa</h3>
+			</div>
+			<br>
+			<div id="quarto-paragrafo" class="collapse">
+				<div class="card-block">
+					<form action="salvarpesquisahie" method="post">
+						<div class="panel-body">
+							<div class="form-group">
+
+								<label for="nome">Nome da equipe</label><input type="text"
+									class="form-control" id="nome" name="NomeEquipe"
+									placeholder="Nome da equipe" required="required" />
+							</div>
+
+							<div class="form-group">
+
+								<label for="data">Data de realização</label><input type="date"
+									class="form-control" id="data" name="data"
+									placeholder="Data de realização" required="required" />
+							</div>
+							<div class="form-group">
+
+								<label for="consultor">Nome do consultor</label><input
+									type="text" class="form-control" id="consultor"
+									name="consultor" placeholder="Nome do consultor"
+									required="required" />
+							</div>
+							<div class="form-group">
+
+								<label for="consultor">Qtde de Participantes</label><input
+									type="number" class="form-control" id="numero" name="numero"
+									placeholder="Qtde" min=1 required="required" />
+							</div>
+
+
+							<button type="submit" class="btn btn-success">Cadastrar</button>
+					</form>
+
+
+				</div>
+			</div>
+
+
+</div>
+	
+		</div>
+		<br/>
+		<div class="card" style="border-radius: 10px;">
+
+			<div class="card-header" style="background-color: #29a329;">
+
+				<h3 class="panel-title" data-toggle="collapse"
+					data-target="#segundo-paragrafo" data-parent="#paineis-sobre"
+					style="color: #ffffff;">Cadastrar Entidades</h3>
+			</div>
+			<br>
+			<div id="segundo-paragrafo" class="collapse">
+				<div class="card-block">
+					<form method="POST" action="salvahierarquia" id="form" name="form">
+
+						<div class="form-group">
+
+							<label for="nome">Nome Entidade:</label><input type="text"
+								class="form-control" id="descricao" name="descricao"
+								placeholder="Nome da Entidade" required="required" />
+						</div>
+
+						<label for="nome">Listar Categoria:</label> <select
+							placeholder="Listar Cateogira" class="form-control"
+							name=codCategorias>
+							<option value="">---</option>
+							<div th:each="categoria : ${categorias}">
+
+								<option th:value="${categoria.id}"><span
+										th:text="${categoria.categorias}"></option>
+
+							</div>
+						</select> <br>
+						<button type="submit" class="btn btn-success">Cadastrar</button>
+
+					</form>
+
+
+					<br>
+
+					<div class="card" style="border-radius: 10px;">
+
+						<div class="card-header" style="background-color: #29a329;">
+							<h3 class="panel-title" data-toggle="collapse"
+								data-target="#terceiro_paragrafo" data-parent="#paineis-sobre"
+								style="color: #ffffff;">Gerenciar Entidades:</h3>
+						</div>
+						<br>
+						<div id="terceiro_paragrafo" class="collapse">
+							<div class="table-responsive">
+
+								<div class="input-group">
+									<input style="margin-left: 10px; margin-right: 10px;"
+										class="form-control" id="myInput" type="text"
+										placeholder="Filtrar.." /> <i
+										class="glyphicon glyphicon-search"></i>
+								</div>
+								<strong><p  th:text="${falhouEntidade}" style="color: red;"></p></strong>
+								<br />
+								<table class="table table-hover" id="tabEntidade">
+									<thead>
+										<tr>
+
+											<th>Nome Entidade:</th>
+											<th>Categoria:</th>
+											<th>Apagar.</th>
+
+										</tr>
+									</thead>
+									<tbody id="myTable">
+										<tr th:each="hierarquia : ${hierarquias}">
+
+											<td><span th:text="${hierarquia.descricao}"></span></td>
+											<td><span th:text="${hierarquia.categoria}"></span></td>
+
+
+											<td><a
+												th:href="@{'/apagaentidade'(codigo=${hierarquia.id})}"
+												
+												th:attr="name=${hierarquia.id}"><img border="0"
+													alt="Lixo" src="img/trash.png" width="40" height="40"
+													title="Clique para apagar a hierarquia"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a></td>
+
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+	<br/>
+		
+
+
+		<div class="card" style="border-radius: 10px;">
+
+			<div class="card-header" style="background-color: #29a329;">
+				<h3 class="panel-title" data-toggle="collapse"
+					data-target="#quinto-paragrafo" data-parent="#paineis-sobre"
+					style="color: #ffffff;">Gerenciar Projetos</h3>
+			</div>
+			<br>
+			<div id="quinto-paragrafo" class="collapse">
+				<div class="card-block">
+
+					<form method="POST" action="" id="addProjetos" name="addProjetos">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+
+									<th>Empresa:</th>
+									<th>Secretaria:</th>
+									<th>Diretoria/Assessoria:</th>
+									<th>Coordenação:</th>
+									<th>Núcleo:</th>
+									<th>Cargo:</th>
+									<th>Função</th>
+									<th>Pesquisa</th>
+									<th>Incluir</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+
+									<td><select placeholder="Listar Cateogira"
+										class="form-control" name=codEmpresa>
+											<option value="">---</option>
+
+											<div th:each="empresa : ${empresas}">
+
+												<option th:value="${empresa.id}"><span
+														th:text="${empresa.descricao}"></option>
+
+											</div>
+									</select></td>
+
+
+									<td><select placeholder="Listar Cateogira"
+										class="form-control" name=codSecretaria>
+											<option value="">---</option>
+
+											<div th:each="secretaria : ${secretarias}">
+
+												<option th:value="${secretaria.id}"><span
+														th:text="${secretaria.descricao}"></option>
+
+											</div>
+									</select></td>
+									<td><select placeholder="Listar Cateogira"
+										class="form-control" name=codDiretoria>
+											<option value="">---</option>
+
+											<div th:each="diretoria : ${diretorias}">
+
+												<option th:value="${diretoria.id}"><span
+														th:text="${diretoria.descricao}"></option>
+
+											</div>
+									</select></td>
+									<td><select placeholder="Listar Cateogira"
+										class="form-control" name=codCoordenacao>
+											<option value="">---</option>
+
+											<div th:each="coordenacao : ${coordenacoes}">
+
+												<option th:value="${coordenacao.id}"><span
+														th:text="${coordenacao.descricao}"></option>
+
+											</div>
+									</select></td>
+									<td><select placeholder="Listar Cateogira"
+										class="form-control" name=codNucleo>
+											<option value="">---</option>
+
+											<div th:each="nucleo : ${nucleos}">
+
+												<option th:value="${nucleo.id}"><span
+														th:text="${nucleo.descricao}"></option>
+
+											</div>
+									</select></td>
+									<td><select placeholder="Listar Cateogira"
+										class="form-control" name=codCargo>
+											<option value="">---</option>
+
+											<div th:each="cargo : ${cargos}">
+
+												<option th:value="${cargo.id}"><span
+														th:text="${cargo.descricao}"></option>
+
+											</div>
+									</select></td>
+									<td><select placeholder="Listar Cateogira"
+										class="form-control" name=codFuncao>
+											<option value="">---</option>
+
+											<div th:each="funcao : ${funcoes}">
+
+												<option th:value="${funcao.id}"><span
+														th:text="${funcao.descricao}"></option>
+
+											</div>
+									</select></td>
+
+									<td><select placeholder="Listar Cateogira"
+										class="form-control" name=codPesquisa>
+											<option value="">---</option>
+
+											<div th:each="pesquisa : ${pesquisas}">
+
+												<option th:value="${pesquisa.id}"><span
+														th:text="${pesquisa.nomeequipe}"></option>
+
+											</div>
+									</select></td>
+									<td><a name="status"
+										th:onclick="'javascript:addProjeto();'"><img border="0"
+											alt="Editar" src="img/add.png" width="40" height="40"
+											title="Clique para Adicionar"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+					<br>
+					<div class="card" style="border-radius: 10px;">
+
+						<div class="card-header" style="background-color: #29a329;">
+							<h3 class="panel-title" data-toggle="collapse"
+								data-target="#sexto_paragrafo" data-parent="#paineis-sobre"
+								style="color: #ffffff;">Gerenciar Consolidação:</h3>
+							<img border="0" alt="Lixo" src="img/graph.png" width="25"
+								height="25" title="Clique para apagar a pesquisa"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/>
+						</div>
+						<br>
+
+
+						<form method="POST" action="concilicaprojeto" id="formPesquisa1"
+							name="formPesquisa1">
+							<div id="sexto_paragrafo" class="collapse">
+
+								<button type="submit" class="conciliacao">
+									<span class="btnspan"><strong>Consolidação</strong><span>
+								</button>
+								<br>
+								<div class="table-responsive">
+
+									<div class="input-group">
+										<input style="margin-left: 10px; margin-right: 10px;"
+											class="form-control" id="myInput2" type="text"
+											placeholder="Filtrar.." /> <i
+											class="glyphicon glyphicon-search"></i>
+									</div>
+									<br />
+
+
+									<table class="table table-hover">
+										<thead>
+											<tr>
+
+												<th>Empresa:</th>
+												<th>Secretaria:</th>
+												<th>Diretoria/Assessoria:</th>
+												<th>Coordenação:</th>
+												<th>Núcleo:</th>
+												<th>Cargo:</th>
+												<th>Função</th>
+												<th>Pesquisa</th>
+												<th>Apagar</th>
+
+											</tr>
+										</thead>
+										<tbody id="myTable2">
+											<tr th:each="projeto : ${projetos}">
+
+												<td><span th:text="${projeto.empresa_desc}"></span></td>
+
+
+												<td><span th:text="${projeto.secretaria_desc}"></span>
+
+
+												</td>
+												<td><span th:text="${projeto.diretoria_desc}"></span></td>
+												<td><span th:text="${projeto.coordencao_desc}"></span>
+
+												</td>
+												<td><span th:text="${projeto.nucleo_desc}"></span></td>
+												<td><span th:text="${projeto.cargo_desc}"></span></td>
+												<td><span th:text="${projeto.funcao_desc}"></span></td>
+
+												<td>
+
+
+													<div th:switch="${projeto.quantidadeResposta}">
+														<div th:case="0">
+															<label
+																class="checkbox-inline custom-control custom-checkbox "><input
+																alt="iliação gráficos" class="custom-control-input"
+																type="checkbox" name="pesquisa" id="pesquisa"
+																th:value="${projeto.pesquisa_id}" disabled /><span
+																class="custom-control-indicator"
+																style="height: 30px; width: 30px; top: 40%; bottom: 60%; transform: translate(-40%, -60%)"></span><span
+																th:text="${projeto.pesquisa_desc}"></span><img
+																border="0" alt="Conciliação" src="img/graph_no.png"
+																width="20" height="20"
+																title="Selecione a pesquisa que deseja vizualizar"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></label>
+														</div>
+
+														<div th:case="*">
+															<label
+																class="checkbox-inline custom-control custom-checkbox "><input
+																alt="Conciliação gráficos" class="custom-control-input"
+																type="checkbox" name="pesquisa" id="pesquisa"
+																th:value="${projeto.pesquisa_id}" /><span
+																class="custom-control-indicator"
+																style="height: 30px; width: 30px; top: 40%; bottom: 60%; transform: translate(-40%, -60%)"></span><span
+																th:text="${projeto.pesquisa_desc}"></span><img
+																border="0" alt="Conciliação" src="img/graph.png"
+																width="20" height="20"
+																title="PEsquisa não está completa. Ainda não é possivel mostrar os gráficos"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></label>
+														</div>
+												</td>
+												<td><a name="status" th:href="@{'/apagaProjetoConciliacao'(idProjeto=${projeto.id})}"><img
+														border="0" alt="Apagarr" src="img/trash.png" width="40"
+														height="40" title="Clique para Adicionar"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a></td>
+											</tr>
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+						</form>
+					</div>
+					<br/>
+				</div>
+
+
+			</div>
+		</div>
+	<br/>
+		<div class="card" style="border-radius: 10px;">
+
+			<div class="card-header" style="background-color: #29a329;">
+				<h3 class="panel-title" data-toggle="collapse"
+					data-target="#setimo-paragrafo" data-parent="#paineis-sobre"
+					style="color: #ffffff;">Gerenciar Campeãs</h3>
+			</div>
+			<br>
+			<div id="setimo-paragrafo" class="collapse">
+				<div class="card-block">
+
+
+					<br>
+					<div class="card">
+
+						<div class="card-header" style="background-color: #29a329;">
+							<h3 class="panel-title" data-toggle="collapse"
+								data-target="#oitavo_paragrafo" data-parent="#paineis-sobre"
+								style="color: #ffffff;">Gerenciar Campeãs de Satisfação:</h3>
+							<img border="0" alt="Lixo" src="img/trofeu_like.png" width="25"
+								height="25" title="Clique para apagar a pesquisa" />
+						</div>
+						<br>
+
+
+						<form method="POST" action="satisfacaoprojeto" id="formPesquisa2"
+							name="formPesquisa2">
+							<div id="oitavo_paragrafo" class="collapse">
+
+								<button type="submit" class="conciliacao">
+									<span class="btnspan"><strong>Consolidação</strong><span>
+								</button>
+								<br>
+								<div class="table-responsive">
+
+									<div class="input-group">
+										<input style="margin-left: 10px; margin-right: 10px;"
+											class="form-control" id="myInput2" type="text"
+											placeholder="Filtrar.." /> <i
+											class="glyphicon glyphicon-search"></i>
+									</div>
+									<br />
+									<input type="hidden" name="tipo" value="s">
+									<label>Nome do Relatório:</label><input style="margin-left: 10px; margin-right: 10px;"
+											class="form-control" id="nomerelatorio" name="nomerelatorio" type="text"
+											placeholder="Digite o nome do relatório" required="required" th:onblur="'javascript:validaNomeProjeto();'"/>
+											
+									<br />		
+
+									<table class="table table-hover">
+										<thead>
+											<tr>
+
+												<th>Empresa:</th>
+												<th>Secretaria:</th>
+												<th>Diretoria/Assessoria:</th>
+												<th>Coordenação:</th>
+												<th>Núcleo:</th>
+												<th>Cargo:</th>
+												<th>Função</th>
+												<th>Pesquisa</th>
+												<th>Apagar</th>
+
+											</tr>
+										</thead>
+										<tbody id="myTable2">
+											<tr th:each="projeto : ${projetos}">
+
+												<td><span th:text="${projeto.empresa_desc}"></span></td>
+
+
+												<td><span th:text="${projeto.secretaria_desc}"></span>
+
+
+												</td>
+												<td><span th:text="${projeto.diretoria_desc}"></span></td>
+												<td><span th:text="${projeto.coordencao_desc}"></span>
+
+												</td>
+												<td><span th:text="${projeto.nucleo_desc}"></span></td>
+												<td><span th:text="${projeto.cargo_desc}"></span></td>
+												<td><span th:text="${projeto.funcao_desc}"></span></td>
+
+												<td>
+
+
+													<div th:switch="${projeto.quantidadeResposta}">
+														<div th:case="0">
+															<label
+																class="checkbox-inline custom-control custom-checkbox "><input
+																alt="Conciliação gráficos" class="custom-control-input"
+																type="checkbox" name="pesquisa" id="pesquisa"
+																th:value="${projeto.pesquisa_id}" disabled /><span
+																class="custom-control-indicator"
+																style="height: 30px; width: 30px; top: 40%; bottom: 60%; transform: translate(-40%, -60%)"></span><span
+																th:text="${projeto.pesquisa_desc}"></span><img
+																border="0" alt="Conciliação" src="img/trofeu_like_grey.png"
+																width="20" height="20"
+																title="Selecione a pesquisa que deseja vizualizar"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></label>
+														</div>
+
+														<div th:case="*">
+															<label
+																class="checkbox-inline custom-control custom-checkbox "><input
+																alt="Conciliação gráficos" class="custom-control-input"
+																type="checkbox" name="pesquisa" id="pesquisa"
+																th:value="${projeto.pesquisa_id}" /><span
+																class="custom-control-indicator"
+																style="height: 30px; width: 30px; top: 40%; bottom: 60%; transform: translate(-40%, -60%)"></span><span
+																th:text="${projeto.pesquisa_desc}"></span><img
+																border="0" alt="Conciliação" src="img/trofeu_like.png"
+																width="20" height="20"
+																title="PEsquisa não está completa. Ainda não é possivel mostrar os gráficos"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></label>
+														</div>
+												</td>
+												<td><a name="status" th:href="@{'/apagaProjetoConciliacao'(idProjeto=${projeto.id})}"><img
+														border="0" alt="Apagarr" src="img/trash.png" width="40"
+														height="40" title="Clique para Adicionar"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a></td>
+											</tr>
+										</tbody>
+									</table>
+
+								</div>
+								<div class="card" style=" margin-left: 20px; margin-right: 20px; border-radius: 10px;" >
+
+						<div class="card-header" style="background-color: #29a329;">
+							<h3 class="panel-title" data-toggle="collapse"
+								data-target="#deca_paragrafo" data-parent="#paineis-sobre"
+								style="color: #ffffff;">Lista de Campeãs Satisfação:</h3>
+							<img border="0" alt="Lixo" src="img/trofeu_like.png" width="25"
+								height="25" title="Clique para apagar a pesquisa"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/>
+						</div>
+						<br>
+
+
+						<form method="POST" action="testes" id="formPesquisa"
+							name="formPesquisa">
+							<div id="deca_paragrafo" class="collapse">
+
+							
+								<br>
+								<div class="table-responsive">
+
+									<div class="input-group">
+										<input style="margin-left: 10px; margin-right: 10px;"
+											class="form-control" id="myInput3" type="text"
+											placeholder="Filtrar.." /> <i
+											class="glyphicon glyphicon-search"></i>
+									</div>
+									<br />
+
+
+									<table class="table table-hover">
+										<thead>
+											<tr>
+
+												<th>Nome do Proejto:</th>
+												
+												<th>Vizualizar</th>
+												<th>Imprimir</th>
+												<th>Apagar</th>
+
+											</tr>
+										</thead>
+										<tbody id="myTable3">
+											<tr th:each="satisfacao : ${satisfacoes}">
+
+												<td><span th:text="${satisfacao.nomerelatorio}"></span></td>
+
+
+												<td><a th:attr="name=${satisfacao.nomerelatorio}"  th:href="@{'/vizualizaSatisfacaoProjeto'(nomeProjeto=${satisfacao.nomerelatorio})}" ><img
+														border="0" alt="Vizualizar" src="img/trofeu_like.png" width="40"
+														height="40" title="Clique para Vizualizar" /></a></td>
+												<td><a 	th:href="@{'/vizualizaSatisfacaoProjetoPrinter'(nomeProjeto=${satisfacao.nomerelatorio})}"
+														><img border="0"
+														alt="Conciliação" src="img/printer.png" width="40" height="40"
+														title="Clique Imprimir"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a></td>	
+																
+														<td><a name="status" th:href="@{'/apagaProjetoSatisfacao'(idProjeto=${satisfacao.nomerelatorio})}"><img
+														border="0" alt="Apagarr" src="img/trash.png" width="40"
+														height="40" title="Clique para Adicionar"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a></td>
+											</tr>
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+						</form>
+					</div>
+					<br/>
+					</div>
+						
+						
+					</div>
+					<div class="card" style="border-radius: 10px;">
+
+						<div class="card-header" style="background-color: #29a329;">
+							<h3 class="panel-title" data-toggle="collapse"
+								data-target="#onze_paragrafo" data-parent="#paineis-sobre"
+								style="color: #ffffff;">Gerenciar Campeãs de Insatisfação:</h3>
+							<img border="0" alt="Lixo" src="img/trofeu_dislike.png" width="25"
+								height="25" title="Clique para apagar a pesquisa"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/>
+						</div>
+						<br>
+
+
+						<form method="POST" action="insatisfacaoprojeto" id="formPesquisa3"
+							name="formPesquisa3">
+							<div id="onze_paragrafo" class="collapse">
+
+								<button type="submit" class="campeas">
+									<span class="btnspan"><strong>Consolidação</strong><span>
+								</button>
+								<br>
+								<div class="table-responsive">
+
+									<div class="input-group">
+										<input style="margin-left: 10px; margin-right: 10px;"
+											class="form-control" id="myInput4" type="text"
+											placeholder="Filtrar.." /> <i
+											class="glyphicon glyphicon-search"></i>
+									</div>
+									<br />
+									<input type="hidden" name="tipo" value="i">
+									<label>Nome do Relatório:</label><input style="margin-left: 10px; margin-right: 10px;"
+											class="form-control" id="nomerelatorio2" name="nomerelatorio" type="text"
+											placeholder="Digite o nome do relatório" required="required" th:onblur="'javascript:validaNomeProjeto2();'"/>
+											
+									<br />		
+
+									<table class="table table-hover">
+										<thead>
+											<tr>
+
+												<th>Empresa:</th>
+												<th>Secretaria:</th>
+												<th>Diretoria/Assessoria:</th>
+												<th>Coordenação:</th>
+												<th>Núcleo:</th>
+												<th>Cargo:</th>
+												<th>Função</th>
+												<th>Pesquisa</th>
+												<th>Apagar</th>
+
+											</tr>
+										</thead>
+										<tbody id="myTable4">
+											<tr th:each="projeto : ${projetos}">
+
+												<td><span th:text="${projeto.empresa_desc}"></span></td>
+
+
+												<td><span th:text="${projeto.secretaria_desc}"></span>
+
+
+												</td>
+												<td><span th:text="${projeto.diretoria_desc}"></span></td>
+												<td><span th:text="${projeto.coordencao_desc}"></span>
+
+												</td>
+												<td><span th:text="${projeto.nucleo_desc}"></span></td>
+												<td><span th:text="${projeto.cargo_desc}"></span></td>
+												<td><span th:text="${projeto.funcao_desc}"></span></td>
+
+												<td>
+
+
+													<div th:switch="${projeto.quantidadeResposta}">
+														<div th:case="0">
+															<label
+																class="checkbox-inline custom-control custom-checkbox "><input
+																alt="Conciliação gráficos" class="custom-control-input"
+																type="checkbox" name="pesquisa" id="pesquisa"
+																th:value="${projeto.pesquisa_id}" disabled /><span
+																class="custom-control-indicator"
+																style="height: 30px; width: 30px; top: 40%; bottom: 60%; transform: translate(-40%, -60%)"></span><span
+																th:text="${projeto.pesquisa_desc}"></span><img
+																border="0" alt="Conciliação" src="img/trofeu_dislike_grey.png"
+																width="20" height="20"
+																title="Selecione a pesquisa que deseja vizualizar"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></label>
+														</div>
+
+														<div th:case="*">
+															<label
+																class="checkbox-inline custom-control custom-checkbox "><input
+																alt="Conciliação gráficos" class="custom-control-input"
+																type="checkbox" name="pesquisa" id="pesquisa"
+																th:value="${projeto.pesquisa_id}" /><span
+																class="custom-control-indicator"
+																style="height: 30px; width: 30px; top: 40%; bottom: 60%; transform: translate(-40%, -60%)"></span><span
+																th:text="${projeto.pesquisa_desc}"></span><img
+																border="0" alt="Conciliação" src="img/trofeu_dislike.png"
+																width="20" height="20"
+																title="PEsquisa não está completa. Ainda não é possivel mostrar os gráficos"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></label>
+														</div>
+												</td>
+												<td><a name="status" th:href="@{'/apagaProjetoConciliacao'(idProjeto=${projeto.id})}"><img
+														border="0" alt="Apagarr" src="img/trash.png" width="40"
+														height="40" title="Clique para Adicionar"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a></td>
+											</tr>
+										</tbody>
+									</table>
+
+								</div>
+								<br/>
+								<div class="card" style=" margin-left: 20px; margin-right: 20px; border-radius: 10px;">
+
+						<div class="card-header" style="background-color: #29a329;">
+							<h3 class="panel-title" data-toggle="collapse"
+								data-target="#doze_paragrafo" data-parent="#paineis-sobre"
+								style="color: #ffffff;">Lista de Campeãs Insatisfação:</h3>
+							<img border="0" alt="Lixo" src="img/trofeu_dislike.png" width="25"
+								height="25" title="Clique para apagar a pesquisa"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/>
+						</div>
+						<br>
+
+
+						<form method="POST" action="testes" id="formPesquisa"
+							name="formPesquisa">
+							<div id="doze_paragrafo" class="collapse">
+
+							
+								<br>
+								<div class="table-responsive">
+
+									<div class="input-group">
+										<input style="margin-left: 10px; margin-right: 10px;"
+											class="form-control" id="myInput5" type="text"
+											placeholder="Filtrar.." /> <i
+											class="glyphicon glyphicon-search"></i>
+									</div>
+									<br />
+
+
+									<table class="table table-hover">
+										<thead>
+											<tr>
+
+												<th>Nome do Proejto:</th>
+												
+												<th>Vizualizar</th>
+												<th>Imprimir</th>
+												<th>Apagar</th>
+
+											</tr>
+										</thead>
+										<tbody id="myTable5">
+											<tr th:each="insatisfacao : ${insatisfacoes}">
+
+												<td><span th:text="${insatisfacao.nomerelatorio}"></span></td>
+
+
+												<td><a th:attr="name=${insatisfacao.nomerelatorio}"  th:href="@{'/vizualizaInsatisfacaoProjeto'(nomeProjeto=${insatisfacao.nomerelatorio})}" ><img
+														border="0" alt="Vizualizar" src="img/trofeu_dislike.png" width="40"
+														height="40" title="Clique para Vizualizar"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a></td>
+														
+												<td><a 	th:href="@{'/vizualizaInsatisfacaoProjetoPrinter'(nomeProjeto=${insatisfacao.nomerelatorio})}"
+														><img border="0"
+														alt="Conciliação" src="img/printer.png" width="40" height="40"
+														title="Clique Imprimir"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a></td>		
+														<td><a name="status" th:href="@{'/apagaProjetoInsatisfacao'(idProjeto=${insatisfacao.nomerelatorio})}"><img
+														border="0" alt="Apagarr" src="img/trash.png" width="40"
+														height="40" title="Clique para Adicionar"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a></td>
+											</tr>
+										</tbody>
+									</table>
+
+								</div>
+							</div>
+						</form>
+					</div>
+					<br/>
+							</div>
+						</form>
+						
+					</div>
+					
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+	<footer id="footer" class="footer"> 2018 © Proergon. Todos os
+		direitos reservados. </footer>
+
+
+
+
+	<script src="bootstrap/js/tether.min.js"></script>
+	<script src="bootstrap/js/jquery.min2.js"></script>
+	<!--<script src="bootstrap/js/jquery2.js"></script>-->
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$("#myInput")
+									.on(
+											"keyup",
+											function() {
+												var value = $(this).val()
+														.toLowerCase();
+												$("#myTable tr")
+														.filter(
+																function() {
+																	$(this)
+																			.toggle(
+																					$(
+																							this)
+																							.text()
+																							.toLowerCase()
+																							.indexOf(
+																									value) > -1)
+																});
+											});
+						});
+
+		$(document)
+				.ready(
+						function() {
+							$("#myInput2")
+									.on(
+											"keyup",
+											function() {
+												var value = $(this).val()
+														.toLowerCase();
+												$("#myTable2 tr")
+														.filter(
+																function() {
+																	$(this)
+																			.toggle(
+																					$(
+																							this)
+																							.text()
+																							.toLowerCase()
+																							.indexOf(
+																									value) > -1)
+																});
+											});
+						});
+		
+		
+		$(document)
+		.ready(
+				function() {
+					$("#myInput3")
+							.on(
+									"keyup",
+									function() {
+										var value = $(this).val()
+												.toLowerCase();
+										$("#myTable3 tr")
+												.filter(
+														function() {
+															$(this)
+																	.toggle(
+																			$(
+																					this)
+																					.text()
+																					.toLowerCase()
+																					.indexOf(
+																							value) > -1)
+														});
+									});
+				});
+		
+		$(document)
+		.ready(
+				function() {
+					$("#myInput5")
+							.on(
+									"keyup",
+									function() {
+										var value = $(this).val()
+												.toLowerCase();
+										$("#myTable5 tr")
+												.filter(
+														function() {
+															$(this)
+																	.toggle(
+																			$(
+																					this)
+																					.text()
+																					.toLowerCase()
+																					.indexOf(
+																							value) > -1)
+														});
+									});
+				});
+	</script>
+
+</body>
+</html>

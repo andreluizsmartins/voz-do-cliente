@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="estilos.css" />
+<link rel="stylesheet" href="bootstrap/css/tether.min.css">
+<link rel="shortcut icon" href="img/proergon.ico" type="image/x-icon" />
+<title>A Voz do Cliente</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script>
+
+/**  
+ noback v0.0.1 
+ library for prevent backbutton 
+ Author: Kiko Mesquita: http://twitter.com/kikomesquita 
+ Based on stackoverflow 
+ * Copyright (c) 2015 @ kikomesquita 
+*/ 
+
+(function(window) { 
+  'use strict'; 
+ 
+var noback = { 
+	 
+	//globals 
+	version: '0.0.1', 
+	history_api : typeof history.pushState !== 'undefined', 
+	 
+	init:function(){ 
+		window.location.hash = '#no-back'; 
+		noback.configure(); 
+	}, 
+	 
+	hasChanged:function(){ 
+		if (window.location.hash == '#no-back' ){ 
+			window.location.hash = '#BLOQUEIO';
+			//mostra mensagem que não pode usar o btn volta do browser
+			if($( "#msgAviso" ).css('display') =='none'){
+				$( "#msgAviso" ).slideToggle("slow");
+			}
+		} 
+	}, 
+	 
+	checkCompat: function(){ 
+		if(window.addEventListener) { 
+			window.addEventListener("hashchange", noback.hasChanged, false); 
+		}else if (window.attachEvent) { 
+			window.attachEvent("onhashchange", noback.hasChanged); 
+		}else{ 
+			window.onhashchange = noback.hasChanged; 
+		} 
+	}, 
+	 
+	configure: function(){ 
+		if ( window.location.hash == '#no-back' ) { 
+			if ( this.history_api ){ 
+				history.pushState(null, '', '#BLOQUEIO'); 
+			}else{  
+				window.location.hash = '#BLOQUEIO';
+				//mostra mensagem que não pode usar o btn volta do browser
+				if($( "#msgAviso" ).css('display') =='none'){
+					$( "#msgAviso" ).slideToggle("slow");
+				}
+			} 
+		} 
+		noback.checkCompat(); 
+		noback.hasChanged(); 
+	} 
+	 
+	}; 
+	 
+	// AMD support 
+	if (typeof define === 'function' && define.amd) { 
+		define( function() { return noback; } ); 
+	}  
+	// For CommonJS and CommonJS-like 
+	else if (typeof module === 'object' && module.exports) { 
+		module.exports = noback; 
+	}  
+	else { 
+		window.noback = noback; 
+	} 
+	noback.init();
+}(window)); 
+
+</script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron" align="center" >
+			<h1>
+				<span >Configuração realizada com sucesso!</span>
+			</h1>
+			
+			<a><img alt="" src="img/checkmark.png"/></a>
+		</div>
+
+
+		
+	</div>
+
+
+
+	<!--  <script src="jquery.js"></script>-->
+			<script src="bootstrap/js/tether.min.js"></script>
+<script src="bootstrap/js/jquery.min2.js"></script>
+	<!--<script src="bootstrap/js/jquery2.js"></script>-->
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

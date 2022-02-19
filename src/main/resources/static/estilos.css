@@ -1,0 +1,150 @@
+#paineis-sobre{
+	
+	margin-top: 20px;
+	
+}
+#depoimentos{
+	
+	background-color: #0275D8;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: #FFF;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	
+	
+}
+.grupo-radio,
+.contato-select{
+	
+	width: 50%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.footer{
+	
+	background-color:#333;
+	color: #FFF;
+	padding: 20px;
+	margin-top:10px;
+	
+} 
+
+.footer address:last-child{
+	
+	margin-bottom:10px;
+	
+} 
+html,body{
+	
+	
+	height:100%;
+}
+header{
+	
+	
+	background-image: url(img/castelo.jpg);
+	background-size: cover;
+	background-position: top center;
+	height:100%;
+	
+}
+
+header h1{
+
+	margin-bottom:0;
+	margin-top:0;
+}
+.banner{
+	
+	color:#FFF;
+	background-color: RGBA(0,0,0,0.5);
+	padding:10px;
+	width:80%;
+	border-radius: 8px;
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	transition: .3s;
+}
+@media(min-width: 768px){
+
+.questoes{
+	width: 250px;
+	
+}
+.projetos-reponsivo{
+	
+	width:50%;
+	float:left;
+	
+}	
+	
+}
+
+.chart {
+  width: 100%; 
+  min-height: 450px;
+}
+
+.botaotopo {
+display:scroll;
+position:fixed;
+bottom:50px;
+left:10px;
+}
+.tableb {
+display:scroll;
+position:fixed;
+bottom:100px;
+left:10px;
+}
+
+.tableb2 {
+display:scroll;
+position:fixed;
+bottom:150px;
+left:10px;
+}
+.footerFixed {
+display:scroll;
+position:fixed;
+bottom:2px;
+right:2px;
+}
+
+.top{
+color:#FFF;	
+background-color: RGBA(0,0,0,0.3);
+border-radius: 8px;
+
+}
+
+.conciliacao {
+  margin: 10px;
+  background-image: url(img/graph.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-color: white;
+  /* put the height and width of your image here */
+  height: 50px;
+  width: 50px;
+  border: none;
+}
+.campeas {
+  margin: 10px;
+  background-image: url(img/graph.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-color: white;
+  /* put the height and width of your image here */
+  height: 50px;
+  width: 50px;
+  border: none;
+}
+
+
+.btnspan {
+  display: none;
+}

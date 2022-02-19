@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script type="text/javascript" src="gstatic/loader.js"></script>
+
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="estilos.css" />
+<link rel="shortcut icon" href="img/proergon.ico" type="image/x-icon" />
+<title>Pesquisa - A Voz do Cliente</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script th:inline="javascript">
+    
+      
+    
+    </script>
+
+
+</head>
+<body id="content">
+
+
+
+	<div  style="padding-left: 10px;padding-right: 10px;">
+		<a><img border="0" alt="" src="img/logo_proergon.png"
+			height="50px" /></a>
+		<div
+			style="background-color: RGBA(34, 139, 34, 1); border-radius: 8px; padding: 10px; color: #FFF; font: Arial;">
+			<h2>
+				Nome da equipe: <span th:text="${title}"></span>
+			</h2>
+			<h5>Reunião de conciliação de resultado</h5>
+		</div>
+
+		<hr />
+
+<div
+			style="background-color: RGBA(34, 139, 34, 1); border-radius: 8px; padding: 10px; color: #FFF; font: Arial;">
+			
+			<h5>Campeã de Insatisfação</h5>
+		</div>
+
+
+	
+
+		<div id="listaDeContato">
+			<div class="table-responsive">
+
+				<table class="table table-hover">
+					<thead>
+						<tr>
+
+
+							<th>Descrição da Questão</th>
+
+							<th>Descrição</th>
+							<th>Total</th>
+							<th>Comentário</th>
+						</tr>
+					</thead>
+
+					<tr th:each="conciliacao3 : ${conciliacoes3}">
+
+
+						<td><span th:text="${conciliacao3.descricaoQuestao}"></span></td>
+
+						<td><span th:text="${conciliacao3.descricao}"></span></td>
+						<td><div style="font-size: 38px; color: red;"><strong><span th:text="${conciliacao3.total}"></span></strong></div></td>
+						<td>
+					
+						<div><p  style="text-align:justify; width:600px; margin-right: 30px"  th:text=${conciliacao3.ajustes}></p></div>
+						
+					</tr>
+
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	
+	<footer id="footer" class="footer" > 2018 © Proergon. Todos os
+		direitos reservados. </footer>
+	
+	<!--  <script src="jquery.js"></script>-->
+
+
+
+</body>
+</html>

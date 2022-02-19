@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script type="text/javascript" src="gstatic/loader.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="estilos.css" />
+<link rel="shortcut icon" href="img/proergon.ico" type="image/x-icon" />
+<title>Insatisfação - A Voz do Cliente</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+	
+	<div>
+	<a class="botaotopo" href="#" title="Voltar para a pagina anterior"> <img
+		src="img/Undo.png" border="0"  height="50px"/>
+	</a>
+	</div>
+	
+	
+	<div class="container">
+	<a><img border="0" alt="Lixo" src="img/logo_proergon.png"
+			height="50px" /></a>
+	<div  style="background-color: RGBA(34,139,34,1); border-radius: 8px; padding: 10px; color:#FFF; font: Arial; ">
+	<h2>Nome da equipe: <span th:text = "${title}"></span></h2>
+	<h5>Reunião de conciliação de resultado</h5>
+	</div>
+		
+
+
+
+
+		<div id="listaDeContato">
+			<div class="table-responsive">
+
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Nome da Equipe</th>
+							<th>Número da Questão</th>
+							<th>Descrição da Questão</th>
+							<th>Letra</th>
+							<th>Descrição</th>
+							<th>Total</th>
+
+						</tr>
+					</thead>
+
+					<tr th:each="conciliacao : ${conciliacoes}">
+						<td><span th:text="${conciliacao.equipe}"></span></td>
+						<td><span th:text="${conciliacao.numero}"></span></td>
+						<td><span th:text="${conciliacao.descricaoQuestao}"></span></td>
+						<td><span th:text="${conciliacao.letra}"></span></td>
+						<td><span th:text="${conciliacao.descricao}"></span></td>
+						<td><span th:text="${conciliacao.total}"></span></td>
+
+					</tr>
+
+				</table>
+			</div>
+		</div>
+
+	</div>
+
+	<footer id="footer" class="footer"> 2018 © Proergon. Todos os
+		direitos reservados. </footer>
+
+	<!--  <script src="jquery.js"></script>-->
+
+
+
+</body>
+</html>

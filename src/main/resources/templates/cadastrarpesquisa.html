@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<script src="bootstrap/js/jquery.min2.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="estilos.css" />
+
+<link rel="stylesheet" href="bootstrap/css/tether.min.css">
+<link rel="shortcut icon" href="img/naca.jpg" type="image/x-icon" />
+<title>A Voz do Cliente</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="/meujavascript.js"></script>
+<script type="text/javascript">
+
+
+
+</script>
+
+</head>
+<body>
+
+
+
+	<div class="container">
+		<div class="header">
+			<a><img border="0" alt="Proergon" src="img/logo_proergon.png"
+				height="50px" /></a>
+
+			<div style="float: right; padding-top: 5px;">
+				<strong><em><span id="ip"></span></em></strong>
+			</div>
+			<hr style="color: RGBA(34, 139, 34, 1); margin-bottom: 0px;" />
+			<hr style="color: RGBA(34, 139, 34, 1); margin-top: 0px;" />
+		</div>
+
+		
+
+
+		<button type="button" class="btn btn-success btn-sm"
+			data-toggle="modal" data-target="#myModal2">Configuração<span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
+
+		
+
+		<!-- Modal Config-->
+		<div class="modal fade" id="myModal2" role="dialog">
+			<div class="modal-dialog modal-md">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h5 class="modal-title">Configurações</h5>
+					</div>
+					<div class="modal-body container">
+						<div style="float: left;">
+							<div style="float: left;">Limitar respostas ao total de
+								participantes:</div>
+							<br />
+							<div style="float: left; ">Validar o IP
+								dos participantes:</div>
+						</div>
+
+						<div style="float: right; ">
+							<div class="switch__container">
+								<div th:if="${validaQuestoes}">
+								<input id="switch-shadow" 
+									type="checkbox"  checked> 
+									
+								</div>
+								<div th:unless="${validaQuestoes}">
+								<input id="switch-shadow" 
+									type="checkbox"> 
+									
+								</div>
+							</div>
+							<div class="switch__container">
+							
+							<div th:if="${validaIp}">
+								<input id="switch-shadow2" 
+									type="checkbox"  checked> </label>
+							</div>
+									
+								
+								<div th:unless="${validaIp}">	
+								<input id="switch-shadow2"
+									type="checkbox" > </label>
+									
+								</div>	
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-success btn-sm"
+							data-dismiss="modal">Fechar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div style="float: right;">
+			<a href="/cadastro" title="Atualizar a Pagina"> <img
+				alt="Atualizar a Pagina" src="img/reload.png"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/>
+			</a>
+
+		</div>
+
+		<hr />
+
+<a	th:href="@{'/hie'}" alt>
+		<img border="0"	alt="Vá para o gerenciador de cadastros" src="img/proergon.ico" width="40" height="40"   onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/>
+		</a>
+<a	th:href="@{'/arquivo'}" alt>
+		<img border="0"	alt="Vá para o gerenciador de cadastros" src="img/folder.png" width="40" height="40"   onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/>
+		</a>
+
+	<hr />
+
+	<div class="table-responsive">
+		<h3>Gerenciar Equipes:</h3>
+		<div class="input-group">
+		<input class="form-control" id="myInput" type="text"
+			placeholder="Filtrar.."/>
+			 <i class="glyphicon glyphicon-search"></i>
+			 </div>
+			<br/>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Nome Equipe:</th>
+					<th>Data</th>
+					<th>Consultor</th>
+					<th>Qtde Partic.</th>
+					<th>Status</th>
+					<th>Monitor.</th>
+					<th>Insatisfação</th>
+					<th>Satisfação</th>
+					<th>Impr. res.</th>
+					<th>Impr. compl.</th>
+					<th>Consolidação</th>
+					<th>Arquivar</th>
+				</tr>
+			</thead>
+			<div th:with="rowCounter = 0">
+			
+			<tbody id="myTable">
+			
+				
+				<tr th:each="pesquisa : ${pesquisas}">
+					
+					<td><span th:text="${pesquisa.count}"></span></td>	
+					<td><a id="logs"  th:name="${pesquisa.id}"><span th:text="${pesquisa.nomeequipe}"></span></a></td>
+					<td><span th:text="${pesquisa.data}"></span></td>
+					<td><span th:text="${pesquisa.consultor}"></span></td>
+					<td><input type="text"
+								class="form-control" th:attr="id=${pesquisa.id}"  th:value="${pesquisa.qtde}"	required="required" min=1 th:onblur="'javascript:atualizaQtde('+${pesquisa.id}+');'"/></td>
+
+					<td>
+						<div th:switch="${pesquisa.status}">
+							<a th:case="Ativo"
+								th:href="@{'/editastatusoff'(id=${pesquisa.id})}" name="status"><img
+								border="0" alt="Editar" src="img/check_green.png" width="40"
+								height="40" title="Clique para desativar a pesquisa"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a> 
+								<a
+								th:case="Inativo"
+								th:href="@{'/editastatuson'(id=${pesquisa.id})}" name="status"><img
+								border="0" alt="Editar" src="img/remove_red.png" width="40"
+								height="40" title="Clique para ativar a pesquisa" onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a>
+						</div>
+					</td>
+					<td>
+						<div th:switch="${pesquisa.status}">
+							<a th:case="Ativo" th:href="@{'/f'(id=${pesquisa.id})}" name="status"
+								target="_blank"><img border="0" alt="Editar"
+								src="img/olho.png" width="40" height="40"
+								title="Clique para monitorar a pesquisa"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a> <a
+								th:case="Inativo" name="status"><img border="0" alt="Editar"
+								src="img/olhofechado.png" width="40" height="40"
+								title="Pesquisa não ativa"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a>
+						</div>
+					</td>
+					<td>
+						<div th:switch="${pesquisa.qtdResposta}">
+							<a th:case="0" th:attr="name=${pesquisa.nomeequipe}"><img
+								border="0" alt="Caderno de Encargos" src="img/trofeu_dislike_grey.png"
+								width="40" height="40"
+								title="Não existe respostas para esta pesquisa"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a> <a
+								th:case="*" th:href="@{'/insatisfacao'(id=${pesquisa.id})}"
+								th:attr="name=${pesquisa.nomeequipe}"><img border="0"
+								alt="Caderno de Encargos" src="img/trofeu_dislike.png" width="40"
+								height="40" title="Caderno de Encargos"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a>
+						</div>
+					</td>
+					<td>
+						<div th:switch="${pesquisa.qtdResposta}">
+							<a th:case="0" th:attr="name=${pesquisa.nomeequipe}"><img
+								border="0" alt="Caderno de Encargos" src="img/trofeu_like_grey.png"
+								width="40" height="40"
+								title="Não existe respostas para esta pesquisa"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></span></a> <a
+								th:case="*" th:href="@{'/satisfacao'(id=${pesquisa.id})}"
+								th:attr="name=${pesquisa.nomeequipe}"><img border="0"
+								alt="Caderno de Encargos" src="img/trofeu_like.png" width="40"
+								height="40" title="Caderno de Encargos"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></span></a>
+						</div>
+					</td>
+					<td>
+						<div th:switch="${pesquisa.qtdResposta}">
+							<a th:case="0" th:attr="name=${pesquisa.nomeequipe}"><img
+								border="0" alt="Consolidação" src="img/printeroff.png" width="40"
+								height="40" title="Não há o que imprimir"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a> <a th:case="*"
+								th:href="@{'/imprimir'(id=${pesquisa.id})}"
+								th:attr="name=${pesquisa.nomeequipe}"><img border="0"
+								alt="Consolidação" src="img/printer.png" width="40" height="40"
+								title="Clique Imprimir"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a>
+						</div>
+					</td>
+					<td>
+						<div th:switch="${pesquisa.qtdResposta}">
+							<a th:case="0" th:attr="name=${pesquisa.nomeequipe}"><img
+								border="0" alt="Consolidação" src="img/printeroff.png" width="40"
+								height="40" title="Não há o que imprimir"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a> <a th:case="*"
+								th:href="@{'/imprimirCompleto'(id=${pesquisa.id})}"
+								th:attr="name=${pesquisa.nomeequipe}"><img border="0"
+								alt="Consolidação" src="img/printer.png" width="40" height="40"
+								title="Clique Imprimir"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a>
+						</div>
+					</td>
+					<td>
+						<div th:switch="${pesquisa.qtdResposta}">
+							<a th:case="0" th:attr="name=${pesquisa.nomeequipe}"><img
+								border="0" alt="Consolidação" src="img/graph_no.png" width="40"
+								height="40" title="Não existe respostas para esta pesquisa"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/><span
+								class="badge badge-danger" th:text="${pesquisa.qtdResposta}"></span></a>
+							<a th:case="*" th:href="@{'/conciliacao'(id=${pesquisa.id})}"
+								th:attr="name=${pesquisa.nomeequipe}"><img border="0"
+								alt="Consolidação" src="img/graph.png" width="40" height="40"
+								title="Clique ver o resultado da pesquisa"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/><span
+								class="badge badge-danger" th:text="${pesquisa.qtdResposta}"></span></a>
+						</div>
+					</td>
+
+					
+					<td><a th:onclick="'javascript:arquivar('+${pesquisa.id}+');'"
+						th:attr="name=${pesquisa.nomeequipe}"><img border="0"
+							alt="Lixo" src="img/folder.png" width="40" height="40"
+							title="Clique para apagar a arquivar"  onMouseOver="aumenta(this)" onMouseOut="diminui(this)"/></a></td>
+					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</div>
+
+	<footer id="footer" class="footer"> 2018 © Proergon. Todos os
+		direitos reservados. </footer>
+
+
+
+
+	<script src="bootstrap/js/tether.min.js"></script>
+	<script src="bootstrap/js/jquery.min2.js"></script>
+	<!--<script src="bootstrap/js/jquery2.js"></script>-->
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$("#myInput")
+									.on(
+											"keyup",
+											function() {
+												var value = $(this).val()
+														.toLowerCase();
+												$("#myTable tr")
+														.filter(
+																function() {
+																	$(this)
+																			.toggle(
+																					$(
+																							this)
+																							.text()
+																							.toLowerCase()
+																							.indexOf(
+																									value) > -1)
+																});
+											});
+						});
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<script src="bootstrap/js/jquery.min2.js"></script>
+<script src="materialize/js/materialize.min.js"></script>
+<link rel="stylesheet" href="materialize/css/materialize.min.css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script type="text/javascript" src="gstatic/loader.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="estilos.css" />
+<link rel="shortcut icon" href="img/proergon.ico" type="image/x-icon" />
+<title>Pesquisa - A Voz do Cliente</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	$('#gravar').click(function(){
+		
+		
+	
+		var dados = jQuery('#form').serializeArray();
+		console.log(dados);
+			
+
+			jQuery.ajax({
+				type: "POST",
+				url: "updatePesquisa2",
+				data: dados,
+				success: function( data )
+				{
+					Materialize.toast('Comentário salvo com sucesso', 3000, 'rounded');
+				}
+			});
+			
+			return false;
+		});
+	});
+
+
+
+
+</script>
+</head>
+<body>
+
+	<div>
+		<a class="botaotopo" href="/cadastro"
+			title="Voltar para a pagina anterior"> <img src="img/Undo.png"
+			border="0" height="50px" title="Voltar" />
+		</a>
+		
+		<a class="tableb" id="gravar"><img src="img/save.png"
+			border="0" height="50px" title="Salvar Tudo"/></a></td>
+		
+	</div>
+
+
+	<div class="container">
+		<a><img border="0" alt="Lixo" src="img/logo_proergon.png"
+			height="50px" /></a>
+		<div
+			style="background-color: RGBA(34, 139, 34, 1); border-radius: 8px; padding: 10px; color: #FFF; font: Arial;">
+			<h2>
+				Nome da equipe: <span th:text="${title}"></span>
+			</h2>
+			<h5>Reunião de consolidação de resultado</h5>
+		</div>
+
+
+
+
+
+		<div id="listaDeContato">
+			<div class="table-responsive">
+
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>#</th>
+
+							<th>Descrição da Questão</th>
+
+							<th>Descrição</th>
+							<th>Total</th>
+							<th>Comentário</th>
+						</tr>
+					</thead>
+
+					<tr th:each="conciliacao : ${conciliacoes}">
+
+						<td><span th:text="${conciliacao.count}"></span></td>
+						<td><span th:text="${conciliacao.descricaoQuestao}"></span></td>
+
+						<td><span th:text="${conciliacao.descricao}"></span></td>
+						<td><div style="font-size: 38px; color: blue;"><strong><span th:text="${conciliacao.total}"></span></strong></div></td>
+						<td>
+						<form method="POST" action="updatePesquisa" id="form" name="form">
+						<input type="hidden" name="tipo" value="S" />
+						
+						<input type="hidden" name="nomerelatorio"
+						th:value="${conciliacao.nomerelatorio}" />
+						<input type="hidden" name="id"
+						th:value="${conciliacao.id}" />
+						<input type="hidden" name="id_equipe"
+						th:value="${conciliacao.id_equipe}" />
+						<input type="hidden" name="numero"
+						th:value="${conciliacao.numero}" />
+						<input type="hidden" name="letra"
+						th:value="${conciliacao.letra}" />
+						<textarea rows="4" cols="50" name="comentario" th:text="${conciliacao.comentario}"  class="materialize-textarea" data-length="5000"></textarea>
+						<textarea rows="4" cols="50" name="ajustes" th:text="${conciliacao.ajustes}" class="materialize-textarea" data-length="5000"></textarea>
+						
+							
+						</form>
+
+						</td>
+					</tr>
+
+				</table>
+			</div>
+		</div>
+
+	</div>
+
+	<footer id="footer" class="footer"> 2018 © Proergon. Todos os
+		direitos reservados. </footer>
+
+	<!--  <script src="jquery.js"></script>-->
+
+
+
+</body>
+</html>
