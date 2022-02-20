@@ -133,8 +133,10 @@ public class PesquisaEquipeDao {
 
 			Connection c = FabricaConexao.conectarSQLITE();
 			stmt = c.createStatement();
+			String sql = "Select * from equipe where status = 'Ativo' and id = '"+id+"'";
+			System.out.println(sql);
 			rs = stmt
-					.executeQuery("Select * from equipe where status = 'Ativo' and id = '"+id+"'");
+					.executeQuery(sql);
 
 			
 			

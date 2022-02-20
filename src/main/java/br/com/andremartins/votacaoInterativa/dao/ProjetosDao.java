@@ -84,7 +84,7 @@ public class ProjetosDao {
 			}
 			stmt.close();
 			c.close();
-			System.out.println(projetos.toString());
+		
 
 		} catch (Exception e) {
 

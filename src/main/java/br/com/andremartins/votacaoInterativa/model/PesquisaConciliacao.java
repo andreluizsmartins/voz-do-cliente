@@ -104,7 +104,7 @@ public class PesquisaConciliacao {
 	@Override
 	public String toString() {
 		return "PesquisaConciliacao [equipe=" + equipe + ", numero=" + numero
-				+ ", descricaoQuest�o=" + descricaoquestao + ", letra=" + letra
+				+ ", descricaoQuestão=" + descricaoquestao + ", letra=" + letra
 				+ ", descricao=" + descricao + ", total=" + total + "]";
 	}
 

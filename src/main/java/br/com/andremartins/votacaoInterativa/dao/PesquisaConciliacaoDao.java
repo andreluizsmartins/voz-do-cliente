@@ -280,14 +280,15 @@ public class PesquisaConciliacaoDao {
 			Connection c = FabricaConexao.conectarSQLITE();
 			stmt = c.createStatement();
 			PesquisaEquipe equipe = PesquisaEquipeDao.listarPesquisaAtivaUnica(id);
-			String sql = "select e.nomeequipe as equipe, p.question as numero, q.question as descricaoquestao,a.letter as letra,a.text as descriccao, count(p.alternative_id) as total "
+			System.out.println(equipe.toString());
+			String sql = "select p.question as numero, count(p.alternative_id) as total "
 					+ "from "
 					+ "pesquisas p, questions q, alternatives a, equipe e "
 					+ "where p.id_equipe = e.id "
 					+ "and p.question = q.id "
 					+ "and p.alternative_id = a.id "
 					+ "and p.id_equipe = '" + id + "' " +
-					"group by numero, equipe, descricaoquestao, letra, descriccao "
+					"group by numero "
 					+ "order by p.question;";
 			System.out.println(sql);
 			rs = stmt
@@ -307,7 +308,7 @@ public class PesquisaConciliacaoDao {
 							 
 						 }else{
 							 conciliacaoQtde.get(i).setTotal(df.format((Float.parseFloat(conciliacaoQtde.get(i).getTotal())/Float.parseFloat(rs.getString("total")))*100));
-						
+							 
 						 }
 						
 						//System.out.println(concilia��oQtde.get(i).toString());

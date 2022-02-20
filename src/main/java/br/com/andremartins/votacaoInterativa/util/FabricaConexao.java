@@ -14,7 +14,7 @@ public class FabricaConexao {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static Connection conectarSQLITE2(){
+	public static Connection conectarSQLITE(){
 	    Connection c = null;
 	    try {
 	    //  Class.forName("org.sqlite.JDBC");
@@ -30,7 +30,7 @@ public class FabricaConexao {
 	    
 		return c;
 	  }
-	public static Connection conectarSQLITE(){
+	public static Connection conectarSQLITE2(){
 	    Connection c = null;
 	    String driver = "org.postgresql.Driver";
         String user = "brgvvhlfmachgx";

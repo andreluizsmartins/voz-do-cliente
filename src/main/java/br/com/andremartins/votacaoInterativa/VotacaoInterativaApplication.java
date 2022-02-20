@@ -16,8 +16,6 @@ public class VotacaoInterativaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(VotacaoInterativaApplication.class, args);
 		
-		Connection c  = FabricaConexao.conectarSQLITE();
-		ProjetosDao.listarTodosProjetos();
 	}
 
 }

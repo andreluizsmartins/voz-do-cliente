@@ -1863,7 +1863,7 @@ public class FusionCharts {
 	
 	public static StringBuilder gera39XML(
 			ArrayList<PesquisaConciliacao> conciliacoes, PesquisaEquipe equipe) {
-
+		System.out.println("Passou aqui");
 		int numero = 0;
 		String questao1 = "39";
 		
@@ -1878,7 +1878,7 @@ public class FusionCharts {
 
 			if (Integer.parseInt(conciliacoes.get(i).getNumero()) >= Integer.parseInt(questao1)
 					&& Integer.parseInt(conciliacoes.get(i).getNumero()) <= Integer.parseInt(questao1)) {
-
+				System.out.println(conciliacoes.get(i).toString());
 				if (numero != Integer.parseInt(conciliacoes.get(i).getNumero())) {
 					xmlChart.append("<category label='"
 							+ conciliacoes.get(i).getNumero() + "-"
@@ -2123,10 +2123,10 @@ public class FusionCharts {
 
 		String name = "";
 		StringBuilder xmlChart = new StringBuilder();
-
-		xmlChart.append("<chart  showPrintMenuItem = '1'  baseFontSize = '"+baseFontSize+"' exportShowMenuItem='1' exportEnabled = '1' caption='Questào de nàmero " + numeroQuestao
+		
+		xmlChart.append("<chart  showPrintMenuItem = '1'  baseFontSize = '"+baseFontSize+"' exportShowMenuItem='1' exportEnabled = '1' caption='Questão de número " + numeroQuestao
 				+ " - - "+conciliacoes.get(1).getEquipe()+" - Participantes: "+equipe.getQtde()+"' decimals = '"+decimal+"' xaxisname='Questào: " + numeroQuestao
-				+ "' yaxisname='Percentagem' numbersuffix='%' rotatevalues='0' theme='fint' valueFontSize ='"+valorFontSize+"'>");
+				+ "' yaxisname='Porcentagem' numbersuffix='%' rotatevalues='0' theme='fint' valueFontSize ='"+valorFontSize+"'>");
 
 		for (int i = 0; i < conciliacoes.size(); i++) {
 
