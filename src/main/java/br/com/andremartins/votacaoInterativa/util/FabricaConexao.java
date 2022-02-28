@@ -14,23 +14,23 @@ public class FabricaConexao {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static Connection conectarSQLITE(){
+	public static Connection conectarSQLITE2(){
 	    Connection c = null;
 	    try {
 	    //  Class.forName("org.sqlite.JDBC");
 	     c = DriverManager.getConnection("jdbc:sqlite:proergon.db");
-	     System.out.println("Sucesso!");
+	     
 	     
 	    } catch ( Exception e ) {
 	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	      System.out.println("Opa! houve uma falha ao se conectar com o banco de dados!!! Tentando conectar novamente.../n");
 	      conectarSQLITE();
-	      System.out.println("Sucesso!.../n");
+	     
 	    }
 	    
 		return c;
 	  }
-	public static Connection conectarSQLITE2(){
+	public static Connection conectarSQLITE(){
 	    Connection c = null;
 	    String driver = "org.postgresql.Driver";
         String user = "brgvvhlfmachgx";

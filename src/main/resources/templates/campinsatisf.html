@@ -18,30 +18,31 @@
 jQuery(document).ready(function(){
 		$('#gravar').click(function(){
 			
-			
-		
-			var dados = jQuery('#form').serializeArray();
-			console.log(dados);
-			
-		
-		
-			
-			jQuery.ajax({
-				type: "POST",
-				url: "updatePesquisa",
-				mimeType:"multipart/form-data",
-				data: dados,
-				success: function( data )
-				{
-					Materialize.toast('Comentário salvo com sucesso', 3000, 'rounded');
-				}
-			});
-			
-			return false;
-		});
+			gravar();
 	});
+});
 
 
+
+function gravar(){
+	
+	var dados = jQuery('#form').serializeArray();
+	console.log(dados);
+	
+	jQuery.ajax({
+		type: "POST",
+		url: "updatePesquisa",
+		mimeType:"multipart/form-data",
+		data: dados,
+		success: function( data )
+		{
+			Materialize.toast('Comentário salvo com sucesso', 3000, 'rounded');
+		}
+	});
+	
+	return false;
+		
+}
 
 
 </script>
@@ -110,8 +111,8 @@ jQuery(document).ready(function(){
 						th:value="${conciliacao.numero}" />
 						<input type="hidden" name="letra"
 						th:value="${conciliacao.letra}" />
-						<textarea rows="4" cols="50" name="comentario" th:text="${conciliacao.comentario}" class="materialize-textarea" data-length="5000"></textarea>
-						<textarea rows="4" cols="50" name="ajustes" th:text="${conciliacao.ajustes}" class="materialize-textarea" data-length="5000"></textarea>
+						<textarea rows="4" cols="50" name="ajustes" th:text="${conciliacao.ajustes}" class="materialize-textarea" data-length="5000" onblur="gravar()"></textarea>
+						<textarea rows="4" cols="50"  name="comentario" th:text="${conciliacao.comentario}" class="materialize-textarea" data-length="5000" onblur="gravar()"></textarea>
 						
 							
 						</form>

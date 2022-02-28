@@ -2,6 +2,7 @@ package br.com.andremartins.votacaoInterativa.dao;
 
 
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -269,6 +270,15 @@ public class PesquisaConciliacaoDao {
 
 		return conciliacoes;
 	}
+	
+	public String roundValue(Float f) {
+		
+		int casasDecimais = 1;
+		BigDecimal aNumber = new BigDecimal(f);
+		aNumber = aNumber.setScale(casasDecimais, BigDecimal.ROUND_HALF_UP);	
+		double value = aNumber.doubleValue();
+		return String.valueOf(value);
+	}
 	public ArrayList<PesquisaConciliacao> listarTodasConciliacoesPercent(int id, ArrayList<PesquisaConciliacao> conciliacaoQtde) {
 		DecimalFormat df = new DecimalFormat("0");
 		Statement stmt = null;
@@ -304,10 +314,10 @@ public class PesquisaConciliacaoDao {
 						
 						 if(conciliacaoQtde.get(i).getNumero().equals("37") ||conciliacaoQtde.get(i).getNumero().equals("38")){
 							 
-							 conciliacaoQtde.get(i).setTotal(df.format(((Float.parseFloat(conciliacaoQtde.get(i).getTotal())/equipe.getQtde())*100)));
+							 conciliacaoQtde.get(i).setTotal(roundValue((Float.parseFloat(conciliacaoQtde.get(i).getTotal())/equipe.getQtde())*100));
 							 
 						 }else{
-							 conciliacaoQtde.get(i).setTotal(df.format((Float.parseFloat(conciliacaoQtde.get(i).getTotal())/Float.parseFloat(rs.getString("total")))*100));
+							 conciliacaoQtde.get(i).setTotal(roundValue(Float.parseFloat(conciliacaoQtde.get(i).getTotal())/Float.parseFloat(rs.getString("total"))*100));
 							 
 						 }
 						
