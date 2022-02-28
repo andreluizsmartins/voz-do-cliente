@@ -28,7 +28,7 @@ public class PesquisaQuestionDao {
 		Integer alternative = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 
@@ -71,7 +71,7 @@ public class PesquisaQuestionDao {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 
@@ -108,7 +108,7 @@ public class PesquisaQuestionDao {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt.executeQuery("select * from pesquisas where id_equipe = "+id+" and  ip = '"+ip+"' and question = 1;");
 
@@ -140,7 +140,7 @@ public class PesquisaQuestionDao {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt.executeQuery("select * from pesquisas where id_equipe = '"+id+"' and question = '"+questao+"';");
 
@@ -171,7 +171,7 @@ public class PesquisaQuestionDao {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt.executeQuery("select count(distinct ip) as total from pesquisas where id_equipe = "+id+" and  question = "+question);
 
@@ -201,7 +201,7 @@ public class PesquisaQuestionDao {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			String query = "select * from pesquisas where id_equipe = "+id+" and  question = "+question+" and  ip = '"+ip+"'"; 
 			
@@ -237,7 +237,7 @@ public class PesquisaQuestionDao {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			stmtDel = c.createStatement();
 			

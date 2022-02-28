@@ -26,7 +26,7 @@ public class PesquisaEquipeDao {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt.executeQuery("Select * from equipe where deletado = 1 order by id desc");
 
@@ -59,7 +59,7 @@ public class PesquisaEquipeDao {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt.executeQuery("Select * from equipe where deletado = 2 order by id desc");
 
@@ -92,7 +92,7 @@ public class PesquisaEquipeDao {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt
 					.executeQuery("Select * from equipe where status = 'Ativo'");
@@ -131,7 +131,7 @@ public class PesquisaEquipeDao {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			String sql = "Select * from equipe where status = 'Ativo' and id = '"+id+"'";
 			System.out.println(sql);
@@ -172,7 +172,7 @@ public class PesquisaEquipeDao {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt
 					.executeQuery("Select * from equipe where id = '"+id+"'");
@@ -215,7 +215,7 @@ public class PesquisaEquipeDao {
 		
 		try {
 			for(int idU : id){
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt
 					.executeQuery("Select * from equipe where id = '"+idU+"'");
@@ -252,7 +252,7 @@ public class PesquisaEquipeDao {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt
 					.executeQuery("Select * from equipe where status = 'Ativo'");
@@ -290,7 +290,7 @@ public class PesquisaEquipeDao {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 
@@ -323,7 +323,7 @@ public class PesquisaEquipeDao {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 
@@ -359,7 +359,7 @@ public class PesquisaEquipeDao {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 
@@ -396,7 +396,7 @@ public class PesquisaEquipeDao {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 
@@ -463,7 +463,7 @@ public class PesquisaEquipeDao {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 
@@ -502,7 +502,7 @@ public class PesquisaEquipeDao {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 

@@ -25,7 +25,7 @@ public class CateoriaDao {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt.executeQuery("Select * from categorias ");
 
@@ -58,7 +58,7 @@ public class CateoriaDao {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt.executeQuery("Select * from categorias where id = '"+id+"'");
 

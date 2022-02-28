@@ -6,15 +6,22 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+
 
 
 public class FabricaConexao {
 
+
+
+	
 	public FabricaConexao() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static Connection conectarSQLITE2(){
+	public static Connection conectarSQLITE(){
+		
 	    Connection c = null;
 	    try {
 	    //  Class.forName("org.sqlite.JDBC");
@@ -30,27 +37,35 @@ public class FabricaConexao {
 	    
 		return c;
 	  }
-	public static Connection conectarSQLITE(){
-	    Connection c = null;
-	    String driver = "org.postgresql.Driver";
-        String user = "brgvvhlfmachgx";
-        String senha = "025465a81c7bd9d6073be07c6f310bac6fbbf00493a5e875e604afdc4d9aaea1";
-        String url = "jdbc:postgresql://ec2-3-224-157-224.compute-1.amazonaws.com:5432/d1mc2j138rhu89";
+	public static Connection conectarJDBC(){
+		
+		if(!ConfigureProperties.ENV.equals("PROD")) {
+			return conectarSQLITE();
+			
+		}else {
+			 Connection c = null;
+			    String driver = "org.postgresql.Driver";
+		        String user = "brgvvhlfmachgx";
+		        String senha = "025465a81c7bd9d6073be07c6f310bac6fbbf00493a5e875e604afdc4d9aaea1";
+		        String url = "jdbc:postgresql://ec2-3-224-157-224.compute-1.amazonaws.com:5432/d1mc2j138rhu89";
 
-        try {
-            Class.forName(driver);
-           
+		        try {
+		            Class.forName(driver);
+		           
 
-            c = DriverManager.getConnection(url, user, senha);
+		            c = DriverManager.getConnection(url, user, senha);
 
-          
-        } catch (ClassNotFoundException ex) {
-            System.err.print(ex.getMessage());
-        } catch (SQLException e) {
-            System.err.print(e.getMessage());
-        }
-	    
-		return c;
+		          
+		        } catch (ClassNotFoundException ex) {
+		            System.err.print(ex.getMessage());
+		        } catch (SQLException e) {
+		            System.err.print(e.getMessage());
+		        }
+			    
+				return c;
+		}
+		
+	   
 	  }
 		
 	public static Connection conectarMySQL() {

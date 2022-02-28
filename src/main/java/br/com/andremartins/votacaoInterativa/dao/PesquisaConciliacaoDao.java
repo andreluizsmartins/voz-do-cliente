@@ -31,7 +31,7 @@ public class PesquisaConciliacaoDao {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			String sql = "select e.nomeequipe as equipe, p.question as numero, q.question as descricaoquestao,a.letter as letra,a.text as descriccao, count(p.alternative_id) as total "
 					+ "from "
@@ -74,7 +74,7 @@ public class PesquisaConciliacaoDao {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			String sql = "select e.nomeequipe as equipe, p.question as numero, q.question as descricaoquestao,a.letter as letra,a.text as descriccao, count(p.alternative_id) as total "
 					+ "from "
@@ -118,7 +118,7 @@ public class PesquisaConciliacaoDao {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			String sql = "select e.nomeequipe as equipe, p.question as numero, q.question as descricaoquestao,a.letter as letra,a.text as descriccao, count(p.alternative_id) as total "
 					+ "from "
@@ -164,7 +164,7 @@ public class PesquisaConciliacaoDao {
 		StringBuilder sql;
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			
 			sql = new StringBuilder();
@@ -221,7 +221,7 @@ public class PesquisaConciliacaoDao {
 		StringBuilder sql;
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			
 			sql = new StringBuilder();
@@ -287,7 +287,7 @@ public class PesquisaConciliacaoDao {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			PesquisaEquipe equipe = PesquisaEquipeDao.listarPesquisaAtivaUnica(id);
 			System.out.println(equipe.toString());
@@ -349,7 +349,7 @@ public class PesquisaConciliacaoDao {
 		int count = id.length;
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			PesquisaEquipe equipe = PesquisaEquipeDao.listarPesquisaMultipla(id);
 			
@@ -428,7 +428,7 @@ public class PesquisaConciliacaoDao {
 
 		try {
 			
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			String sql = "select e.nomeequipe as equipe, p.question as numero, q.question as descricaoquestao,a.letter as letra,a.text as descriccao, count(p.alternative_id) as total "
 					+ "from "
@@ -480,7 +480,7 @@ public ArrayList<PesquisaConciliacao> listarTodasConciliacoes3(int[] id) {
 
 		try {
 			
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			
 			sql = new StringBuilder();

@@ -24,7 +24,7 @@ public class HierarquiaDao {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 
@@ -55,7 +55,7 @@ public class HierarquiaDao {
 		CateoriaDao dao = new CateoriaDao();
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt.executeQuery("Select * from hierarquias ");
 
@@ -88,7 +88,7 @@ public class HierarquiaDao {
 		CateoriaDao dao = new CateoriaDao();
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt.executeQuery("Select * from hierarquias where categoria_id = '"+id+"'");
 
@@ -120,7 +120,7 @@ public class HierarquiaDao {
 		CateoriaDao dao = new CateoriaDao();
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt.executeQuery("Select * from hierarquias where id = '"+id+"'");
 
@@ -149,7 +149,7 @@ public class HierarquiaDao {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 

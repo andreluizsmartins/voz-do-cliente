@@ -22,7 +22,7 @@ public class QuestionDao {
 		
 		try{
 			
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt.executeQuery("Select * from questions");
 			
@@ -62,7 +62,7 @@ public ArrayList<Question> listarUmaQuestao(int id){
 		
 		try{
 			
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt.executeQuery("Select * from questions where id = "+id);
 			

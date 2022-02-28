@@ -243,7 +243,7 @@ public class Utils {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt
 					.executeQuery("select valor from config where parametro = '"
@@ -275,7 +275,7 @@ public class Utils {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 
@@ -308,7 +308,7 @@ public class Utils {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt
 					.executeQuery("select valor from config where parametro = '"
@@ -340,7 +340,7 @@ public class Utils {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 
@@ -373,7 +373,7 @@ public class Utils {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt
 					.executeQuery("select valor from config where parametro = 'validaQuestao'");
@@ -406,7 +406,7 @@ public class Utils {
 
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt
 					.executeQuery("select valor from config where parametro = 'validaIp'");
@@ -440,7 +440,7 @@ public class Utils {
 		try {
 			
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt.executeQuery("select e.nomeequipe, p.question,a.letter, a.text, p.ip from pesquisas p, equipe e, alternatives a where  p.id_equipe = "+id+" and p.id_equipe = e.id and p.alternative_id = a.id;");
 

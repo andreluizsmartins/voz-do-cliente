@@ -23,7 +23,7 @@ public class ProjetosDao {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 
@@ -62,7 +62,7 @@ public class ProjetosDao {
 		PesquisaEquipeDao equipe = new PesquisaEquipeDao();
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt.executeQuery("Select * from projetos ");
 
@@ -105,7 +105,7 @@ public class ProjetosDao {
 		PesquisaEquipeDao equipe = new PesquisaEquipeDao();
 		try {
 
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			stmt = c.createStatement();
 			rs = stmt.executeQuery("Select * from projetos ");
 
@@ -168,7 +168,7 @@ public class ProjetosDao {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 

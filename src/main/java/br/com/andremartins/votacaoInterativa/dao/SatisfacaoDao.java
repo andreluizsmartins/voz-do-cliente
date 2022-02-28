@@ -22,7 +22,7 @@ public class SatisfacaoDao {
 
 	public static boolean existeSatisfacao(int id, String i) {
 
-		Connection c = FabricaConexao.conectarSQLITE();
+		Connection c = FabricaConexao.conectarJDBC();
 		Statement stmt = null;
 		ResultSet rs = null;
 		
@@ -56,7 +56,7 @@ public class SatisfacaoDao {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 
@@ -89,7 +89,7 @@ public class SatisfacaoDao {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 
@@ -120,7 +120,7 @@ public class SatisfacaoDao {
 	
 	public static ArrayList<Satisfacao> listarSatisfacao(int id, String i) {
 		int countId = 1;
-		Connection c = FabricaConexao.conectarSQLITE();
+		Connection c = FabricaConexao.conectarJDBC();
 		Statement stmt = null;
 		ResultSet rs = null;
 		ArrayList<Satisfacao> listaSatisfacao = new ArrayList<Satisfacao>();
@@ -154,7 +154,7 @@ public class SatisfacaoDao {
 	
 	public static ArrayList<Satisfacao> listarSatisfacaoProjeto(String nome, String i) {
 		int countId = 1;
-		Connection c = FabricaConexao.conectarSQLITE();
+		Connection c = FabricaConexao.conectarJDBC();
 		Statement stmt = null;
 		ResultSet rs = null;
 		ArrayList<Satisfacao> listaSatisfacao = new ArrayList<Satisfacao>();
@@ -187,7 +187,7 @@ public class SatisfacaoDao {
 	
 	public static ArrayList<Satisfacao> listarSatisfacaoProjeto() {
 
-		Connection c = FabricaConexao.conectarSQLITE();
+		Connection c = FabricaConexao.conectarJDBC();
 		Statement stmt = null;
 		ResultSet rs = null;
 		ArrayList<Satisfacao> listaSatisfacao = new ArrayList<Satisfacao>();
@@ -219,7 +219,7 @@ public class SatisfacaoDao {
 	}
 	public static ArrayList<Satisfacao> listarInsatisfacaoProjeto() {
 
-		Connection c = FabricaConexao.conectarSQLITE();
+		Connection c = FabricaConexao.conectarJDBC();
 		Statement stmt = null;
 		ResultSet rs = null;
 		ArrayList<Satisfacao> listaSatisfacao = new ArrayList<Satisfacao>();
@@ -253,7 +253,7 @@ public class SatisfacaoDao {
 	
 	public static boolean validaNomeProjeto(String nomeProjeto, String tipo) {
 
-		Connection c = FabricaConexao.conectarSQLITE();
+		Connection c = FabricaConexao.conectarJDBC();
 		Statement stmt = null;
 		ResultSet rs = null;
 		
@@ -289,7 +289,7 @@ public class SatisfacaoDao {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 
@@ -330,7 +330,7 @@ public class SatisfacaoDao {
 		System.out.println("nome do relatorio: "+nomerelatorios);
 		System.out.println("id equipe: "+id_equipe);
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 
@@ -383,7 +383,7 @@ public class SatisfacaoDao {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 
@@ -416,7 +416,7 @@ public class SatisfacaoDao {
 		StringBuilder sql = null;
 
 		try {
-			Connection c = FabricaConexao.conectarSQLITE();
+			Connection c = FabricaConexao.conectarJDBC();
 			c.setAutoCommit(false);
 			stmt = c.createStatement();
 
