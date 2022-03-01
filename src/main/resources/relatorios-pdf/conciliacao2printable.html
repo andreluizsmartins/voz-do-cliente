@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script type="text/javascript" src="gstatic/loader.js"></script>
+<script type="text/javascript" src="fusioncharts/js/fusioncharts.js"></script>
+<script type="text/javascript" src="fusioncharts/js/themes/fusioncharts.theme.fint.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="estilos.css" />
+<link rel="shortcut icon" href="img/proergon.ico" type="image/x-icon" />
+<title>Pesquisa - A Voz do Cliente</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script th:inline="javascript">
+    FusionCharts.ready(function(){
+    
+     // <![CDATA[ 
+       var h = /*[[${xml8}]]*/;
+      var i = /*[[${xml9}]]*/;
+      var a = /*[[${xml1}]]*/;
+      var b = /*[[${xml2}]]*/;
+      var c = /*[[${xml3}]]*/;
+      var d = /*[[${xml4}]]*/;
+      var e = /*[[${xml5}]]*/;
+      var f = /*[[${xml6}]]*/;
+      var g = /*[[${xml7}]]*/;
+    
+      var j = /*[[${xml10}]]*/;
+           
+            // ]]> 
+    
+
+var fusioncharts1 = new FusionCharts({
+    
+    
+   
+  
+    type: 'mscolumn2d',
+    renderAt: 'chart-container1',
+    width: '1050',
+    height: '580',
+    dataFormat: 'xml',
+    dataSource: a,
+}
+);
+var fusioncharts2 = new FusionCharts({
+    
+    
+   
+  
+    type: 'mscolumn2d',
+    renderAt: 'chart-container2',
+    width: '1050',
+    height: '580',
+    dataFormat: 'xml',
+    dataSource: b,
+}
+);
+var fusioncharts3 = new FusionCharts({
+    
+    
+   
+  
+    type: 'mscolumn2d',
+    renderAt: 'chart-container3',
+    width: '1050',
+    height: '580',
+    dataFormat: 'xml',
+    dataSource: c,
+}
+);
+var fusioncharts4 = new FusionCharts({
+    
+    
+   
+  
+    type: 'mscolumn2d',
+    renderAt: 'chart-container4',
+    width: '1050',
+    height: '580',
+    dataFormat: 'xml',
+    dataSource: d,
+}
+);
+var fusioncharts5 = new FusionCharts({
+    
+    
+   
+  
+    type: 'mscolumn2d',
+    renderAt: 'chart-container5',
+    width: '1050',
+    height: '580',
+    dataFormat: 'xml',
+    dataSource: e,
+}
+);
+var fusioncharts6 = new FusionCharts({
+    
+    
+   
+  
+    type: 'mscolumn2d',
+    renderAt: 'chart-container6',
+    width: '1050',
+    height: '580',
+    dataFormat: 'xml',
+    dataSource: f,
+}
+);
+    var fusioncharts7 = new FusionCharts({
+    
+    
+   
+  
+    type: 'mscolumn2d',
+    renderAt: 'chart-container7',
+    width: '1050',
+    height: '580',
+    dataFormat: 'xml',
+    dataSource: g,
+}
+);
+var fusioncharts8 = new FusionCharts({
+
+    type: 'column2d',
+    renderAt: 'chart-container8',
+    width: '1050',
+    height: '580',
+    dataFormat: 'xml',
+    dataSource: h,
+}
+);var fusioncharts9 = new FusionCharts({
+
+    type: 'column2d',
+    renderAt: 'chart-container9',
+    width: '1050',
+    height: '580',
+    dataFormat: 'xml',
+    dataSource: i,
+}
+);
+var fusioncharts10 = new FusionCharts({
+
+    type: 'mscolumn2d',
+    renderAt: 'chart-container10',
+    width: '1050',
+    height: '580',
+    dataFormat: 'xml',
+    dataSource: j,
+}
+);
+
+    fusioncharts1.render();
+    fusioncharts2.render();
+    fusioncharts3.render();
+    fusioncharts4.render();
+    fusioncharts5.render();
+    fusioncharts6.render();
+    fusioncharts7.render();
+    fusioncharts8.render();
+    fusioncharts9.render();    
+    fusioncharts10.render();
+});
+    
+    </script>
+
+
+</head>
+<body id="content">
+
+
+
+	<div  style="padding-left: 10px;padding-right: 10px;">
+		<a><img border="0" alt="" src="img/logo_proergon.png"
+			height="50px" /></a>
+		<div
+			style="background-color: RGBA(34, 139, 34, 1); border-radius: 8px; padding: 10px; color: #FFF; font: Arial;">
+			<h2>
+				Nome da equipe: <span th:text="${title}"></span>
+			</h2>
+			<h5>Reunião de conciliação de resultado</h5>
+		</div>
+
+		<hr />
+
+	</div>
+	
+	<div id="chart-container1">FusionCharts XT will load here!</div>
+	<div id="chart-container2">FusionCharts XT will load here!</div>
+	<div id="chart-container3">FusionCharts XT will load here!</div>
+	<div id="chart-container4">FusionCharts XT will load here!</div>
+	<div id="chart-container5">FusionCharts XT will load here!</div>
+	<div id="chart-container6">FusionCharts XT will load here!</div>
+	<div id="chart-container7">FusionCharts XT will load here!</div>
+	<div id="chart-container8">FusionCharts XT will load here!</div>
+	<div id="chart-container9">FusionCharts XT will load here!</div>
+	<div id="chart-container10">FusionCharts XT will load here!</div>
+
+	
+	<footer id="footer" class="footer" onClick="pdf()"> 2018 © Proergon. Todos os
+		direitos reservados. </footer>
+	
+	<!--  <script src="jquery.js"></script>-->
+
+
+
+</body>
+</html>

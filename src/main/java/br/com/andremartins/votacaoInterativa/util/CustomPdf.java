@@ -5,10 +5,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties("tipodatabase")
-public class CustomPropertie {
+public class CustomPdf {
 	private String jdbc;
 
-	public CustomPropertie() {
+	public CustomPdf() {
 		
 	}
 
@@ -20,7 +20,7 @@ public class CustomPropertie {
 		this.jdbc = jdbc;
 	}
 
-	public CustomPropertie(String jdbc) {
+	public CustomPdf(String jdbc) {
 		super();
 		this.jdbc = jdbc;
 	}
