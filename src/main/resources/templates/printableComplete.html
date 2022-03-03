@@ -51,8 +51,8 @@
 
 							<th>Descrição</th>
 							<th>Total</th>
-							<th>Resumido</th>
-							<th>Completo</th>
+							<th>Detalhe</th>
+							
 						</tr>
 					</thead>
 
@@ -64,8 +64,9 @@
 						<td><span th:text="${conciliacao3.descricao}"></span></td>
 						<td><div style="font-size: 38px; color: red;"><strong><span th:text="${conciliacao3.total}"></span></strong></div></td>
 						<td>
-						<div><p  style="text-align:justify; width:300px; margin-right: 30px"  th:text=${conciliacao3.comentario}></p></div></td>
-						<td><div><p  style="text-align:justify; width:300px; margin-right: 30px"  th:text=${conciliacao3.ajustes}></p></div></td>
+						<div><p style="font-weight: bold;">Resumido: </p><p  style="text-align:justify; width:300px; margin-right: 30px"  th:text=${conciliacao3.comentario}></p></div>
+						<div><p style="font-weight: bold;">Completo: </p><p  style="text-align:justify; width:300px; margin-right: 30px"  th:text=${conciliacao3.ajustes}></p></div></td>
+						<td></td>
 						
 					</tr>
 
