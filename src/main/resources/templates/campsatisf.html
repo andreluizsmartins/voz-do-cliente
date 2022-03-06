@@ -111,8 +111,8 @@ jQuery(document).ready(function(){
 						th:value="${conciliacao.numero}" />
 						<input type="hidden" name="letra"
 						th:value="${conciliacao.letra}" />
-						<textarea rows="4" cols="50" name="comentario" th:text="${conciliacao.comentario}"  class="materialize-textarea" data-length="5000"></textarea>
-						<textarea rows="4" cols="50" name="ajustes" th:text="${conciliacao.ajustes}" class="materialize-textarea" data-length="5000"></textarea>
+						<textarea rows="4" cols="50" placeholder="Descrição Completa" name="ajustes" th:text="${conciliacao.ajustes}" class="materialize-textarea" data-length="5000" onblur="gravar()"></textarea>
+						<textarea rows="4" cols="50" placeholder="Descrição Resumida" name="comentario" th:text="${conciliacao.comentario}" class="materialize-textarea" data-length="5000" onblur="gravar()"></textarea>
 						
 							
 						</form>
