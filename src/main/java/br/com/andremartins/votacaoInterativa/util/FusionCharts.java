@@ -1863,7 +1863,7 @@ public class FusionCharts {
 	
 	public static StringBuilder gera39XML(
 			ArrayList<PesquisaConciliacao> conciliacoes, PesquisaEquipe equipe) {
-		System.out.println("Passou aqui");
+		
 		int numero = 0;
 		String questao1 = "39";
 		
