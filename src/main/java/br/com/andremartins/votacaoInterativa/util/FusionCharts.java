@@ -1933,8 +1933,6 @@ public class FusionCharts {
 
 		xmlChart.append("</dataset>");
 		
-	
-		
 		xmlChart.append("<dataset seriesname='Não Satisfeito'>");
 		
 		String str1c = "<set value='0' />";

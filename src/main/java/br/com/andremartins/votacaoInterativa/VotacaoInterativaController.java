@@ -1924,4 +1924,17 @@ public class VotacaoInterativaController {
 		
 		return "redirect:/hie";
 	}
+	
+	
+	@RequestMapping(value = "/saveTeamEdit", method = RequestMethod.GET)
+	public String saveTeamEdit(Model model, @RequestParam("id") int id, @RequestParam("nome") String nome, HttpSession session) {
+
+		PesquisaEquipeDao dao = new PesquisaEquipeDao();
+
+		dao.saveTeamEdit(id, nome);
+
+		System.out.println("[Alerta] Nome foi alterado com sucesso");
+
+		return "redirect:/cadastro";
+	}
 }

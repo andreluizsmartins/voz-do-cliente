@@ -389,6 +389,42 @@ public class PesquisaEquipeDao {
 		
 
 	}
+	public static void saveTeamEdit(int id, String nome) {
+
+		Statement stmt = null;
+		StringBuilder sql = null;
+
+		try {
+			Connection c = FabricaConexao.conectarJDBC();
+			c.setAutoCommit(false);
+			stmt = c.createStatement();
+
+			sql = new StringBuilder();
+			sql.append("UPDATE equipe ");
+			sql.append("Set ");
+
+			
+			sql.append("nomeequipe = '" + nome + "'");
+			sql.append(" Where ");
+			sql.append("id ='" + id + "'");
+			stmt.executeUpdate(sql.toString());
+
+			c.commit();
+			
+			stmt.close();
+			c.close();
+			
+
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage()
+					+ sql.toString());
+
+			
+		}
+
+		
+
+	}
 	
 	public static void atualizarPesquisaOff(String status) {
 

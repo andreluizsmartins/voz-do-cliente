@@ -15,7 +15,20 @@
 <script src="/meujavascript.js"></script>
 <script type="text/javascript">
 
+function enabledTeamEdit(id){
+	
+	$("#team"+id).removeAttr("readonly");
+	
+}
 
+function saveTeamEdit(id){
+	var val = document.getElementById('team'+40).value;
+	
+	location.href = '/saveTeamEdit?id=' + id + '&nome='+val;
+	
+	$("#team"+id).attr("readonly", "readonly");
+	
+}
 
 </script>
 
@@ -128,17 +141,17 @@
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>Nome Equipe:</th>
+					<th style="width: 200px;">Nome Equipe:</th>
 					<th>Data</th>
 					<th>Consultor</th>
 					<th>Qtde Partic.</th>
 					<th>Status</th>
 					<th>Monitor.</th>
-					<th>Insatisfação</th>
-					<th>Satisfação</th>
+					<th>Insatis...</th>
+					<th>Satisfa...</th>
 					<th>Impr. res.</th>
 					<th>Impr. compl.</th>
-					<th>Consolidação</th>
+					<th>Consoli...</th>
 					<th>Arquivar</th>
 				</tr>
 			</thead>
@@ -150,7 +163,11 @@
 				<tr th:each="pesquisa : ${pesquisas}">
 					
 					<td><span th:text="${pesquisa.count}"></span></td>	
-					<td><a id="logs"  th:name="${pesquisa.id}"><span th:text="${pesquisa.nomeequipe}"></span></a></td>
+					<td>
+					<input type="text"
+								class="form-control" th:attr="id=team+${pesquisa.id}"  th:value="${pesquisa.nomeequipe}" readonly	required="required"  th:ondblclick="'javascript:enabledTeamEdit('+${pesquisa.id}+');'"  th:onblur="'javascript:saveTeamEdit('+${pesquisa.id}+');'"/>
+					
+					</td>
 					<td><span th:text="${pesquisa.data}"></span></td>
 					<td><span th:text="${pesquisa.consultor}"></span></td>
 					<td><input type="text"
